@@ -1,0 +1,450 @@
+package com.company;
+
+import javafx.application.Application;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import java.math.BigDecimal;
+import java.util.Timer;
+import java.util.TimerTask;
+
+public class Reperk extends Application {
+    public static void main(String[] args) {
+
+        launch(args);
+    }
+    public void start(Stage pstage) throws Exception {
+        Parent root;
+        root = FXMLLoader.load(getClass().getResource("UImk2.fxml"));
+        pstage.setTitle("Reperk Calculator");
+        pstage.setScene(new Scene(root, 600, 400));
+        pstage.show();
+
+    }
+
+    public TextArea output;public static String Pks;
+    public static int I = 1;public static int I2 = 1;
+    double Damage;@FXML public TextField DamageField;
+    double CriticalHitChance;@FXML public TextField CriticalHitChanceField;
+    double CriticalHitDamage;@FXML public TextField CriticalHitDamageField;
+    double FireRate;@FXML public TextField FireRateField;
+    double MagazineSize;@FXML public TextField MagazineSizeField;
+    //int Range;@FXML public TextField RangeField;
+    double Durability;@FXML public TextField DurabilityField;
+    double ReloadTime;@FXML public TextField ReloadTimeField;
+    double HeadShotDamage;@FXML public TextField HeadShotDamageField;
+    double Impact;@FXML public TextField ImpactField;
+    double perk1;@FXML public TextField perk1Field;
+    double perk2;@FXML public TextField perk2Field;
+    double perk3;@FXML public TextField perk3Field;
+    double perk4;@FXML public TextField perk4Field;
+    double perk5;@FXML public TextField perk5Field;
+    double perk6;@FXML public TextField perk6Field;
+    public ChoiceBox perkbox1;public ChoiceBox perkbox2;
+    public ChoiceBox perkbox3;public ChoiceBox perkbox4;
+    public ChoiceBox perkbox5;public ChoiceBox perkbox6;
+    public Button Calc;public Button Reset;public static String PKSNum1;
+    public static Boolean alreadyExecuted = false;public static String PKSNum;
+    public static BigDecimal CHC01;public static BigDecimal CHD01 ;
+    public static BigDecimal FR01;public static BigDecimal RT01;
+    public static BigDecimal MS01;public static BigDecimal D01;
+    public static BigDecimal HST01;public static BigDecimal Dam01;
+    BigDecimal HST02;public static int I3;
+
+    public void initialize() {
+        Time.scheduleAtFixedRate(Task,10000,10000);
+        perkbox1.setValue("None");//"Critical Chance","Critical Damage","Damage","Durability","Fire Rate","HeadShot Damage", "Magazine Size","None","Reload Time","Weapon Stability");
+        perkbox1.getItems().addAll("Damage","HeadShot Damage","Critical Chance",  "Critical Damage", "Fire Rate", "Reload Time", "Magazine Size", "Durability", "Weapon Stability",  "None");
+        perkbox2.setValue("None");
+        perkbox2.getItems().addAll("Damage","HeadShot Damage","Critical Chance",  "Critical Damage", "Fire Rate", "Reload Time", "Magazine Size", "Durability", "Weapon Stability",  "None");
+        perkbox3.setValue("None");
+        perkbox3.getItems().addAll("Damage","HeadShot Damage","Critical Chance",  "Critical Damage", "Fire Rate", "Reload Time", "Magazine Size", "Durability", "Weapon Stability",  "None");
+        perkbox4.setValue("None");
+        perkbox4.getItems().addAll("Damage","HeadShot Damage","Critical Chance",  "Critical Damage", "Fire Rate", "Reload Time", "Magazine Size", "Durability", "Weapon Stability",  "None");
+        perkbox5.setValue("None");
+        perkbox5.getItems().addAll("Damage","HeadShot Damage","Critical Chance",  "Critical Damage", "Fire Rate", "Reload Time", "Magazine Size", "Durability", "Weapon Stability",  "None");
+        perkbox6.setValue("None");
+        perkbox6.getItems().addAll("Damage","HeadShot Damage","Critical Chance",  "Critical Damage", "Fire Rate", "Reload Time", "Magazine Size", "Durability", "Weapon Stability",  "None");
+    }
+    public void run1(){
+        I=1;I2=1;
+        System.out.println("run");
+        Runner();
+    }
+    public void Runner(){
+        try {
+            if (!alreadyExecuted) {
+                while (I2 < 7) {
+                    System.out.println("Passed1");
+                    PerkFields();
+                    MainVaules();
+                    I2++;
+                }
+                alreadyExecuted = true;
+            }
+            PerksRunner();
+        } catch (Exception e) { System.out.println("Passed2");output.setText("Error, non-Numbers Detected #1"); }
+
+    }
+    public void PerksRunner(){
+        try {
+            if (alreadyExecuted==true) {
+
+                while (I != 7) {
+                    System.out.println("Passed3");
+                    PerkFields1();
+                    Perks();
+                    I++;
+                }
+            }
+        } catch (Exception e) { System.out.println("Passed4");output.setText("Error, non-Numbers Detected #2");
+        }
+    }
+    public void MainVaules() {
+        switch (I2) {
+            case (1): { Pks =  perkbox1.getValue().toString();
+            DamageHardCode();CHCHardCode();CHDHardCode();FRHardCode();RSHardCode();MSHardCode();DHardCode();WSHardCode();HSDHardCode();NoneHardCode();break;}
+            case (2): { Pks = perkbox2.getValue().toString();
+            DamageHardCode();CHCHardCode();CHDHardCode();FRHardCode();RSHardCode();MSHardCode();DHardCode();WSHardCode();HSDHardCode();NoneHardCode();break; }
+            case (3): { Pks = perkbox3.getValue().toString();
+            DamageHardCode();CHCHardCode();CHDHardCode();FRHardCode();RSHardCode();MSHardCode();DHardCode();WSHardCode();HSDHardCode();NoneHardCode();break;}
+            case (4): { Pks = perkbox4.getValue().toString();
+            DamageHardCode();CHCHardCode();CHDHardCode();FRHardCode();RSHardCode();MSHardCode();DHardCode();WSHardCode();HSDHardCode();NoneHardCode();break; }
+            case (5): { Pks = perkbox5.getValue().toString();
+            DamageHardCode();CHCHardCode();CHDHardCode();FRHardCode();RSHardCode();MSHardCode();DHardCode();WSHardCode();HSDHardCode();NoneHardCode();break; }
+            case (6): { Pks = perkbox6.getValue().toString();
+            DamageHardCode();CHCHardCode();CHDHardCode();FRHardCode();RSHardCode();MSHardCode();DHardCode();WSHardCode();HSDHardCode();NoneHardCode();break; }
+            default: { output.setText("Ahhh, WTF you do?");break; }
+        }
+    }
+    public void Perks() {// P% * X = Y
+        switch (I) {
+            case (1): { Pks = (String) perkbox1.getValue();
+                DSoftCode();CHCSoftCode();CHDSoftCode();FRSoftCode();MSSoftCode();RSSoftCode();WSSoftCode();HSDSoftCode();DamageSoftCode(); break;}
+            case (2): { Pks = (String) perkbox2.getValue();
+                DSoftCode();CHCSoftCode();CHDSoftCode();FRSoftCode();MSSoftCode();RSSoftCode();WSSoftCode();HSDSoftCode();DamageSoftCode(); break;}
+            case (3): { Pks = (String) perkbox3.getValue();
+                DSoftCode();CHCSoftCode();CHDSoftCode();FRSoftCode();MSSoftCode();RSSoftCode();WSSoftCode();HSDSoftCode();DamageSoftCode(); break;}
+            case (4): { Pks = (String) perkbox4.getValue();
+                DSoftCode();CHCSoftCode();CHDSoftCode();FRSoftCode();MSSoftCode();RSSoftCode();WSSoftCode();HSDSoftCode();DamageSoftCode(); break;}
+            case (5): { Pks = (String) perkbox5.getValue();
+                DSoftCode();CHCSoftCode();CHDSoftCode();FRSoftCode();MSSoftCode();RSSoftCode();WSSoftCode();HSDSoftCode();DamageSoftCode(); break;}
+            case (6): { Pks = (String) perkbox6.getValue();
+                DSoftCode();CHCSoftCode();CHDSoftCode();FRSoftCode();MSSoftCode();RSSoftCode();WSSoftCode();HSDSoftCode();DamageSoftCode(); break;}
+            default: { output.setText("Ahhh, WTF you do?"); }
+        }
+
+    }
+    public void PerkFields(){
+    switch(I2){
+        case(1):{PKSNum =perk1Field.getText();break;}
+        case(2):{PKSNum =perk2Field.getText();break;}
+        case(3):{PKSNum =perk3Field.getText();break;}
+        case(4):{PKSNum =perk4Field.getText();break;}
+        case(5):{PKSNum =perk5Field.getText();break;}
+        case(6):{PKSNum =perk6Field.getText();break;}
+        }
+    }
+    public void PerkFields1(){
+        switch(I){
+            case(1):{PKSNum1 =perk1Field.getText();break;}
+            case(2):{PKSNum1 =perk2Field.getText();break;}
+            case(3):{PKSNum1 =perk3Field.getText();break;}
+            case(4):{PKSNum1 =perk4Field.getText();break;}
+            case(5):{PKSNum1 =perk5Field.getText();break;}
+            case(6):{PKSNum1 =perk6Field.getText();break;}
+        }
+    }
+    public void Reseter(){
+        alreadyExecuted = false;
+        I=1;I2=1;
+    }
+    public void DamageHardCode(){
+        if (Pks.equalsIgnoreCase( "Damage") ){ //"Field # / 100% + perk #%"
+            Damage = Double.parseDouble((DamageField.getText()));//pulled from damagefield
+            System.out.println("Damage From field:"+Damage);
+            BigDecimal StepOne= new BigDecimal(/*" perkfield # "*/PKSNum).add(new BigDecimal("100.00"));/* 100+ */ //adding perkfield to 100
+            BigDecimal StepTwo =StepOne.divide(new BigDecimal( "100"),2,6);//1.00 //changes to a decimal
+            Dam01=(new BigDecimal(Damage).divide(StepTwo, 2,6));//BigDecimal Stepthree =(new BigDecimal(Damage).subtract(StepThree)).setScale(2,BigDecimal.ROUND_UP); //divides
+            System.out.println("DamageHC:"+Dam01);
+            DamageField.setText(Dam01.toString());
+        }
+    }
+    public void CHCHardCode(){
+        if (Pks.equalsIgnoreCase("Critical Chance")) {
+            CriticalHitChance = Double.parseDouble((CriticalHitChanceField.getText()));//pulled from damagefield
+            //System.out.println("Damage From field:"CriticalHitChance);
+            BigDecimal StepOne= new BigDecimal(/*" perkfield # "*/PKSNum).add(new BigDecimal("100.00"));/* 100+ */ //adding perkfield to 100
+            BigDecimal StepTwo =StepOne.divide(new BigDecimal( "100"),2,6);//1.00 //changes to a decimal
+            CHC01=(new BigDecimal(CriticalHitChance).divide(StepTwo, 2,6));//BigDecimal Stepthree =(new BigDecimal(Damage).subtract(StepThree)).setScale(2,BigDecimal.ROUND_UP); //divides
+            System.out.println("DamageHC:"+CHC01);
+            CriticalHitChanceField.setText(CHC01.toString());
+        }
+    }
+    public void CHDHardCode(){
+        if (Pks.equalsIgnoreCase("Critical Damage")) {
+            CriticalHitDamage = Double.parseDouble((CriticalHitDamageField.getText()));//pulled from damagefield
+            //System.out.println("Damage From field:"+Damage);
+            BigDecimal StepOne= new BigDecimal(/*" perkfield # "*/PKSNum).add(new BigDecimal("100.00"));/* 100+ */ //adding perkfield to 100
+            BigDecimal StepTwo =StepOne.divide(new BigDecimal( "100"),2,6);//1.00 //changes to a decimal
+            CHD01=(new BigDecimal(CriticalHitDamage).divide(StepTwo, 2,6));//BigDecimal Stepthree =(new BigDecimal(Damage).subtract(StepThree)).setScale(2,BigDecimal.ROUND_UP); //divides
+            System.out.println("DamageHC:"+CHD01);
+            CriticalHitDamageField.setText(CHD01.toString());
+        }
+    }
+    public void FRHardCode(){
+        if (Pks.equalsIgnoreCase("Fire Rate")) {
+            FireRate = Double.parseDouble((FireRateField.getText()));//pulled from damagefield
+            //System.out.println("Damage From field:"+Damage);
+            BigDecimal StepOne= new BigDecimal(/*" perkfield # "*/PKSNum).add(new BigDecimal("100.00"));/* 100+ */ //adding perkfield to 100
+            BigDecimal StepTwo =StepOne.divide(new BigDecimal( "100"),2,6);//1.00 //changes to a decimal
+            FR01=(new BigDecimal(FireRate).divide(StepTwo, 2,6));//BigDecimal Stepthree =(new BigDecimal(Damage).subtract(StepThree)).setScale(2,BigDecimal.ROUND_UP); //divides
+            System.out.println("DamageHC:"+FR01);
+            FireRateField.setText(FR01.toString());
+        }
+    }
+    public void RSHardCode(){
+        if (Pks.equalsIgnoreCase("Reload Time") ){
+            ReloadTime = Double.parseDouble((ReloadTimeField.getText()));//pulled from damagefield
+            //System.out.println("Damage From field:"+Damage);
+            BigDecimal StepOne= new BigDecimal(/*" perkfield # "*/PKSNum).add(new BigDecimal("100.00"));/* 100+ */ //adding perkfield to 100
+            BigDecimal StepTwo =StepOne.divide(new BigDecimal( "100"),2,6);//1.00 //changes to a decimal
+            FR01=(new BigDecimal(ReloadTime).divide(StepTwo, 2,6));//BigDecimal Stepthree =(new BigDecimal(Damage).subtract(StepThree)).setScale(2,BigDecimal.ROUND_UP); //divides
+            System.out.println("DamageHC:"+FR01);
+            ReloadTimeField.setText(FR01.toString());
+        }
+    }
+    public void MSHardCode(){
+        if (Pks.equalsIgnoreCase("Magazine Size")) {
+            MagazineSize = Double.parseDouble((MagazineSizeField.getText()));//pulled from damagefield
+            //System.out.println("Damage From field:"+Damage);
+            BigDecimal StepOne= new BigDecimal(/*" perkfield # "*/PKSNum).add(new BigDecimal("100.00"));/* 100+ */ //adding perkfield to 100
+            BigDecimal StepTwo =StepOne.divide(new BigDecimal( "100"),2,6);//1.00 //changes to a decimal
+            MS01=(new BigDecimal(MagazineSize).divide(StepTwo, 2,6));//BigDecimal Stepthree =(new BigDecimal(Damage).subtract(StepThree)).setScale(2,BigDecimal.ROUND_UP); //divides
+            System.out.println("DamageHC:"+MS01);
+            MagazineSizeField.setText(MS01.toString());
+        }
+    }
+    public void DHardCode(){
+        if (Pks.equalsIgnoreCase("Durability")) {
+            Durability = Double.parseDouble((DurabilityField.getText()));//pulled from damagefield
+            //System.out.println("Damage From field:"+Damage);
+            BigDecimal StepOne= new BigDecimal(/*" perkfield # "*/PKSNum).add(new BigDecimal("100.00"));/* 100+ */ //adding perkfield to 100
+            BigDecimal StepTwo =StepOne.divide(new BigDecimal( "100"),2,6);//1.00 //changes to a decimal
+            D01=(new BigDecimal(Durability).divide(StepTwo, 2,6));//BigDecimal Stepthree =(new BigDecimal(Damage).subtract(StepThree)).setScale(2,BigDecimal.ROUND_UP); //divides
+            System.out.println("DamageHC:"+D01);
+            DurabilityField.setText(D01.toString());
+        }
+    }
+    public void WSHardCode(){
+    }
+    public void HSDHardCode() {
+        if (Pks.equalsIgnoreCase("HeadShot Damage")) {
+            HeadShotDamage = Double.parseDouble((HeadShotDamageField.getText()));//pulled from damagefield
+            //System.out.println("Damage From field:"+Damage);
+            BigDecimal StepOne= new BigDecimal(/*" perkfield # "*/PKSNum).add(new BigDecimal("100.00"));/* 100+ */ //adding perkfield to 100
+            BigDecimal StepTwo =StepOne.divide(new BigDecimal( "100"),2,6);//1.00 //changes to a decimal
+            HST01=(new BigDecimal(HeadShotDamage).divide(StepTwo, 2,6));//BigDecimal Stepthree =(new BigDecimal(Damage).subtract(StepThree)).setScale(2,BigDecimal.ROUND_UP); //divides
+            System.out.println("DamageHC:"+HST01);
+            HeadShotDamageField.setText(HST01.toString());
+        }
+    }
+    public void NoneHardCode(){
+        if (Pks.equalsIgnoreCase("None")) {
+
+            Damage = Double.parseDouble((DamageField.getText()));
+            Dam01 = new BigDecimal(Damage).setScale(2, BigDecimal.ROUND_UP);
+            System.out.println("DamageHC NHC:" + Dam01);
+            DamageField.setText(Dam01.toString());
+
+            CriticalHitChance = Double.parseDouble((CriticalHitChanceField.getText()));
+            CHC01 = new BigDecimal(CriticalHitChance).setScale(2, BigDecimal.ROUND_UP);
+            System.out.println("CChanceHC NHC:" + CHC01);
+            CriticalHitChanceField.setText(CHC01.toString());
+
+            CriticalHitDamage = Double.parseDouble((CriticalHitDamageField.getText()));
+            CHD01 = new BigDecimal(CriticalHitDamage).setScale(2, BigDecimal.ROUND_UP);
+            System.out.println("CDamageHC NHC:" + CHD01);
+            CriticalHitDamageField.setText(CHD01.toString());
+
+            FireRate = Double.parseDouble((FireRateField.getText()));
+            FR01 = new BigDecimal(FireRate).setScale(2, BigDecimal.ROUND_UP);
+            System.out.println("FireHC NHC:" + FR01);
+            FireRateField.setText(FR01.toString());
+
+            ReloadTime = Double.parseDouble((ReloadTimeField.getText()));
+            RT01 = new BigDecimal(ReloadTime).setScale(2, BigDecimal.ROUND_UP);
+            System.out.println("ReloadHC NHC:" + RT01);
+            ReloadTimeField.setText(RT01.toString());
+
+            MagazineSize = Double.parseDouble((MagazineSizeField.getText()));
+            MS01 = new BigDecimal(MagazineSize).setScale(2, BigDecimal.ROUND_UP);
+            System.out.println("MagazineHC NHC:" + MS01);
+            MagazineSizeField.setText(MS01.toString());
+
+            Durability = Double.parseDouble((DurabilityField.getText()));
+            D01 = new BigDecimal(Durability).setScale(2, BigDecimal.ROUND_UP);
+            System.out.println("DurabilityHC NHC:" + D01);
+            DurabilityField.setText(D01.toString());
+
+            HeadShotDamage = Double.parseDouble((HeadShotDamageField.getText()));
+            HST01 = new BigDecimal(HeadShotDamage).setScale(2, BigDecimal.ROUND_UP);
+            System.out.println("HeadShotDamageHC NHC:" + HST01);
+            HeadShotDamageField.setText(HST01.toString());
+        }
+    }
+    BigDecimal Dam02;
+    public void DamageSoftCode(){//P% * X = Y
+        if (Pks.equalsIgnoreCase("Damage")) {//DHC=611.33 + Perk1Field + additonal
+            BigDecimal StepOne= new BigDecimal(PKSNum1).divide(new BigDecimal("100.00"),2,2);
+            BigDecimal StepTwo = (StepOne).multiply((Dam01));
+            Dam02=Dam01;
+            if(I==1){Dam02= ((Dam01).add(StepTwo)).setScale(2,BigDecimal.ROUND_UP);}
+            if(I==2){Dam02= ((Dam02).add(StepTwo)).setScale(2,BigDecimal.ROUND_UP);}
+            if(I==3){Dam02= ((Dam02).add(StepTwo)).setScale(2,BigDecimal.ROUND_UP);}
+            if(I==4){Dam02= ((Dam02).add(StepTwo)).setScale(2,BigDecimal.ROUND_UP);}
+            if(I==5){Dam02= ((Dam02).add(StepTwo)).setScale(2,BigDecimal.ROUND_UP);}
+            if(I==6){Dam02= ((Dam02).add(StepTwo)).setScale(2,BigDecimal.ROUND_UP);}
+            System.out.println("DamageSC:"+Dam02);
+            DamageField.setText(Dam02.toString());
+        }
+    }BigDecimal CHC02;
+    public void CHCSoftCode(){
+        if (Pks.equalsIgnoreCase("Critical Chance")) {
+            BigDecimal StepOne= new BigDecimal(PKSNum1).divide(new BigDecimal("100.00"),2,2);
+            BigDecimal StepTwo = (StepOne).multiply((CHC01));
+            CHC02=CHC01;
+            if(I==1){CHC02= ((CHC01).add(StepTwo)).setScale(2,BigDecimal.ROUND_UP);}
+            if(I==2){CHC02= ((CHC02).add(StepTwo)).setScale(2,BigDecimal.ROUND_UP);}
+            if(I==3){CHC02= ((CHC02).add(StepTwo)).setScale(2,BigDecimal.ROUND_UP);}
+            if(I==4){CHC02= ((CHC02).add(StepTwo)).setScale(2,BigDecimal.ROUND_UP);}
+            if(I==5){CHC02= ((CHC02).add(StepTwo)).setScale(2,BigDecimal.ROUND_UP);}
+            if(I==6){CHC02= ((CHC02).add(StepTwo)).setScale(2,BigDecimal.ROUND_UP);}
+            System.out.println("DamageSC:"+CHC02);
+            CriticalHitChanceField.setText(CHC02.toString());
+        }
+    }BigDecimal CHD02;
+    public void CHDSoftCode(){
+        if (Pks.equalsIgnoreCase("Critical Damage")) {
+            BigDecimal StepOne= new BigDecimal(PKSNum1).divide(new BigDecimal("100.00"),2,2);
+            BigDecimal StepTwo = (StepOne).multiply((CHD01));
+            CHD02=CHD01;
+            if(I==1){CHD02= ((CHD01).add(StepTwo)).setScale(2,BigDecimal.ROUND_UP);}
+            if(I==2){CHD02= ((CHD02).add(StepTwo)).setScale(2,BigDecimal.ROUND_UP);}
+            if(I==3){CHD02= ((CHD02).add(StepTwo)).setScale(2,BigDecimal.ROUND_UP);}
+            if(I==4){CHD02= ((CHD02).add(StepTwo)).setScale(2,BigDecimal.ROUND_UP);}
+            if(I==5){CHD02= ((CHD02).add(StepTwo)).setScale(2,BigDecimal.ROUND_UP);}
+            if(I==6){CHD02= ((CHD02).add(StepTwo)).setScale(2,BigDecimal.ROUND_UP);}
+            System.out.println("DamageSC:"+CHD02);
+            CriticalHitDamageField.setText(CHD02.toString());
+        }
+    }BigDecimal FR02;
+    public void FRSoftCode(){
+        if (Pks.equalsIgnoreCase("Fire Rate")) {
+            BigDecimal StepOne= new BigDecimal(PKSNum1).divide(new BigDecimal("100.00"),2,2);
+            BigDecimal StepTwo = (StepOne).multiply((FR01));
+            FR02=FR01;
+            if(I==1){FR02= ((FR01).add(StepTwo)).setScale(2,BigDecimal.ROUND_UP);}
+            if(I==2){FR02= ((FR02).add(StepTwo)).setScale(2,BigDecimal.ROUND_UP);}
+            if(I==3){FR02= ((FR02).add(StepTwo)).setScale(2,BigDecimal.ROUND_UP);}
+            if(I==4){FR02= ((FR02).add(StepTwo)).setScale(2,BigDecimal.ROUND_UP);}
+            if(I==5){FR02= ((FR02).add(StepTwo)).setScale(2,BigDecimal.ROUND_UP);}
+            if(I==6){FR02= ((FR02).add(StepTwo)).setScale(2,BigDecimal.ROUND_UP);}
+            System.out.println("DamageSC:"+FR02);
+            FireRateField.setText(FR02.toString());
+        }
+    }BigDecimal RS02;
+    public void RSSoftCode(){
+        if (Pks.equalsIgnoreCase("Reload Time")) {
+            BigDecimal StepOne= new BigDecimal(PKSNum1).divide(new BigDecimal("100.00"),2,2);
+            BigDecimal StepTwo = (StepOne).multiply((RT01));
+            RS02=RT01;
+            if(I==1){RS02= ((RT01).add(StepTwo)).setScale(2,BigDecimal.ROUND_UP);}
+            if(I==2){RS02= ((RS02).add(StepTwo)).setScale(2,BigDecimal.ROUND_UP);}
+            if(I==3){RS02= ((RS02).add(StepTwo)).setScale(2,BigDecimal.ROUND_UP);}
+            if(I==4){RS02= ((RS02).add(StepTwo)).setScale(2,BigDecimal.ROUND_UP);}
+            if(I==5){RS02= ((RS02).add(StepTwo)).setScale(2,BigDecimal.ROUND_UP);}
+            if(I==6){RS02= ((RS02).add(StepTwo)).setScale(2,BigDecimal.ROUND_UP);}
+            System.out.println("DamageSC:"+RS02);
+            ReloadTimeField.setText(RS02.toString());
+        }
+    }BigDecimal MS02;
+    public void MSSoftCode(){
+        if (Pks.equalsIgnoreCase("Magazine Size")) {
+            BigDecimal StepOne= new BigDecimal(PKSNum1).divide(new BigDecimal("100.00"),2,2);
+            BigDecimal StepTwo = (StepOne).multiply((MS01));
+            MS02=MS01;
+            if(I==1){MS02= ((MS01).add(StepTwo)).setScale(2,BigDecimal.ROUND_UP);}
+            if(I==2){MS02= ((MS02).add(StepTwo)).setScale(2,BigDecimal.ROUND_UP);}
+            if(I==3){MS02= ((MS02).add(StepTwo)).setScale(2,BigDecimal.ROUND_UP);}
+            if(I==4){MS02= ((MS02).add(StepTwo)).setScale(2,BigDecimal.ROUND_UP);}
+            if(I==5){MS02= ((MS02).add(StepTwo)).setScale(2,BigDecimal.ROUND_UP);}
+            if(I==6){MS02= ((MS02).add(StepTwo)).setScale(2,BigDecimal.ROUND_UP);}
+            System.out.println("DamageSC:"+MS02);
+            MagazineSizeField.setText(MS02.toString());
+        }
+    }BigDecimal D02;
+    public void DSoftCode(){
+        if (Pks.equalsIgnoreCase("Durability")) {
+            BigDecimal StepOne= new BigDecimal(PKSNum1).divide(new BigDecimal("100.00"),2,2);
+            BigDecimal StepTwo = (StepOne).multiply((D01));
+            D02=D01;
+            if(I==1){D02= ((D01).add(StepTwo)).setScale(2,BigDecimal.ROUND_UP);}
+            if(I==2){D02= ((D02).add(StepTwo)).setScale(2,BigDecimal.ROUND_UP);}
+            if(I==3){D02= ((D02).add(StepTwo)).setScale(2,BigDecimal.ROUND_UP);}
+            if(I==4){D02= ((D02).add(StepTwo)).setScale(2,BigDecimal.ROUND_UP);}
+            if(I==5){D02= ((D02).add(StepTwo)).setScale(2,BigDecimal.ROUND_UP);}
+            if(I==6){D02= ((D02).add(StepTwo)).setScale(2,BigDecimal.ROUND_UP);}
+            System.out.println("DamageSC:"+D02);
+            DurabilityField.setText(D02.toString());
+        }
+    }
+    public void WSSoftCode(){
+    }
+    public void HSDSoftCode(){
+        if (Pks.equalsIgnoreCase("HeadShot Damage")){
+            BigDecimal StepOne= new BigDecimal(PKSNum1).divide(new BigDecimal("100.00"),2,2);
+            BigDecimal StepTwo = (StepOne).multiply((HST01));
+            HST02=HST01;
+            if(I==1){HST02= ((HST01).add(StepTwo)).setScale(2,BigDecimal.ROUND_UP);}
+            if(I==2){HST02= ((HST02).add(StepTwo)).setScale(2,BigDecimal.ROUND_UP);}
+            if(I==3){HST02= ((HST02).add(StepTwo)).setScale(2,BigDecimal.ROUND_UP);}
+            if(I==4){HST02= ((HST02).add(StepTwo)).setScale(2,BigDecimal.ROUND_UP);}
+            if(I==5){HST02= ((HST02).add(StepTwo)).setScale(2,BigDecimal.ROUND_UP);}
+            if(I==6){HST02= ((HST02).add(StepTwo)).setScale(2,BigDecimal.ROUND_UP);}
+            System.out.println("DamageSC:"+HST02);
+            HeadShotDamageField.setText(HST02.toString());
+        }
+    }
+    public void NoneSoftCode(){
+    }
+    Timer Time = new Timer();
+    TimerTask Task = new TimerTask() {
+        @Override
+        public void run() {
+            RotatingTextSwitch();
+            I3++;
+        }
+    };
+    public void RotatingTextSwitch(){
+        switch (I3){
+            case(1):{/*output.setText("When run the numbers will appear to change slightly, this is because they have updated and the next change to perks will be reflected in the weapons stats"); break;*/}
+            case(2):{output.setText("Stack up all numbers on one type ie 'Damage' or results could be inaccurate"); break;}
+            case(3):{output.setText("Use only numbers and the '.' or you'll throw an error"); break;}
+            case(4):{output.setText("Values should only be off by one do to rounding issues with BigDecimal"); break;}
+            case(5):{output.setText("'Weapon Stability' changes no values because it cannot be measured");}
+
+            case(6):{I3=1;}
+        }
+    }
+    public void ShutDown(){
+        System.exit(1);
+    }
+}
+
