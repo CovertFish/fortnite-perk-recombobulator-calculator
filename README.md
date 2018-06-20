@@ -22,3 +22,5 @@ Initial Start
 
 0% Damage
 <img src="https://lh4.googleusercontent.com/-Zrfp8I3BUMZbD8ByCuy2Mn5fE_q4ljWWqLbMIJrb5kzv6ae4tEjXVt71zjakqorhzIlvZc21s2jmP0QmGS8=w1231-h947" alt="Picture" class="inline"/>
+
+If you can improve or make a better verison off my code, be my guest
