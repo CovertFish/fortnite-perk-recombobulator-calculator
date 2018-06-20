@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="516.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.company.Reperk">
+   <children>
+      <VBox layoutX="242.0" layoutY="35.0" prefHeight="340.0" prefWidth="116.0" spacing="10.0">
+         <children>
+            <ChoiceBox fx:id="perkbox1" prefWidth="150.0" />
+            <ChoiceBox fx:id="perkbox2" prefWidth="150.0" />
+            <ChoiceBox fx:id="perkbox3" prefWidth="150.0" />
+            <ChoiceBox fx:id="perkbox4" prefWidth="150.0" />
+            <ChoiceBox fx:id="perkbox5" prefWidth="150.0" />
+            <ChoiceBox fx:id="perkbox6" prefWidth="150.0" />
+            <Button fx:id="Calc" mnemonicParsing="false" onAction="#run1" text="Calculate">
+               <VBox.margin>
+                  <Insets left="20.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
+      <TextArea fx:id="output" editable="false" layoutX="249.0" layoutY="278.0" prefHeight="97.0" prefWidth="253.0" text="Run once with the current stats of your weapon including perks, stacked onto only one perk, then only change the perk values and &quot;Current Weapon Stats&quot; will update accordingly" wrapText="true">
+         <cursor>
+            <Cursor fx:constant="NONE" />
+         </cursor></TextArea>
+      <Label layoutX="323.0" layoutY="9.0" text="Current Active Perks" />
+      <Label layoutX="112.0" layoutY="9.0" text="Current Weapon Stats" />
+      <VBox layoutX="380.0" layoutY="35.0" prefHeight="340.0" prefWidth="100.0" spacing="10.0">
+         <children>
+            <TextField fx:id="perk1Field" prefHeight="13.0" prefWidth="100.0" />
+            <TextField fx:id="perk2Field" />
+            <TextField fx:id="perk3Field" />
+            <TextField fx:id="perk4Field" />
+            <TextField fx:id="perk5Field" />
+            <TextField fx:id="perk6Field" />
+            <Button fx:id="Reset" mnemonicParsing="false" onAction="#Reseter" text="Reset">
+               <VBox.margin>
+                  <Insets left="25.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
+      <VBox layoutX="7.0" layoutY="30.0" prefHeight="341.0" prefWidth="107.0" spacing="18.0">
+         <children>
+            <Label text="Damage" />
+            <Label prefHeight="27.0" prefWidth="107.0" text="HeadShot  Damage" />
+            <Label text="Crit Chance" />
+            <Label text="Crit Damage" />
+            <Label text="Fire Rate" />
+            <Label text="Magazine Size" />
+            <Label text="Range" />
+            <Label text="Durability" />
+            <Label text="Reload Time" />
+            <Label text="Impact" />
+         </children>
+         <padding>
+            <Insets top="5.0" />
+         </padding>
+      </VBox>
+      <VBox layoutX="120.0" layoutY="35.0" prefHeight="327.0" prefWidth="100.0" spacing="10.0">
+         <children>
+            <TextField fx:id="DamageField" prefHeight="25.0" prefWidth="63.0" text="1" />
+            <TextField fx:id="HeadShotDamageField" prefHeight="25.0" prefWidth="63.0" text="1" />
+            <TextField fx:id="CriticalHitChanceField" prefHeight="25.0" prefWidth="63.0" text="1" />
+            <TextField fx:id="CriticalHitDamageField" prefHeight="25.0" prefWidth="63.0" text="1" />
+            <TextField fx:id="FireRateField" prefHeight="25.0" prefWidth="63.0" text="1" />
+            <TextField fx:id="MagazineSizeField" prefHeight="25.0" prefWidth="63.0" text="1" />
+            <TextField fx:id="RangeField" prefHeight="25.0" prefWidth="63.0" text="1" />
+            <TextField fx:id="DurabilityField" prefHeight="25.0" prefWidth="63.0" text="1" />
+            <TextField fx:id="ReloadTimeField" prefHeight="25.0" prefWidth="63.0" text="1" />
+            <TextField fx:id="ImpactField" text="1" />
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </VBox>
+      <VBox layoutX="480.0" layoutY="30.0" prefHeight="341.0" prefWidth="107.0" spacing="16.0">
+         <children>
+            <Label text="\%" />
+            <Label prefHeight="27.0" prefWidth="107.0" text="\%" />
+            <Label text="\%" />
+            <Label text="\%" />
+            <Label text="\%" />
+            <Label text="\%" />
+         </children>
+         <padding>
+            <Insets top="8.0" />
+         </padding>
+      </VBox>
+      <Button layoutX="461.0" layoutY="374.0" mnemonicParsing="false" onAction="#ShutDown" text="Quit" />
+   </children>
+</Pane>
