@@ -8,6 +8,8 @@ It works by taking in the level and perks active and revering the active perks b
 
 Also do to limited abilities of mine all perks affecting one value must be stacked upon its ie "Damage", "Damage +15%" and "Damage +10%" must be entered as "Damage +25%" in one perk area.
 
+QUIT BUTTON MUST BE USED OR IT WILL NEVER STOP RUNNING IN BACKGROUND!
+
 <img src="https://lh3.googleusercontent.com/5qdCjtwibUsF3tQIMnzIl4_FA0VK84QbOnnvSlkpvyQoVMHqdprh5zF5b8rFh0zvQ1xi4WqSxyEX19QOjMlQ=w1920-h898" alt="Picture" class="inline"/>
 
 <img src="https://lh5.googleusercontent.com/q3VFAA_oxtFwN31T_7JOhwMO6QJ4yNZNlH_Mi6d3jrPEkRUGAa3YmwY1X8c2DPNyOrA1U9c7GfivGF9RZD6v=w1920-h947" alt="Picture" class="inline"/>
