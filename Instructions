@@ -1,0 +1,4 @@
+Run once will current weapon stats and perks, but put all damage perks on 1 damage percent
+Zero is the default weapons stats without any perks 
+You must use the quit button and not the exit in the top right cornor or the java app will remain running and will slow down you computer, to correct this open task manager by ctrl+alt+del then find "Java(TM) Platform SE binary" and end task
+Use only the decimal "." or an error will be triggered
